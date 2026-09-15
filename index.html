@@ -8,8 +8,8 @@
 <link rel="canonical" href="https://aroma7.com/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Aroma Good | Cold-air scent diffusion">
-<meta property="og:description" content="Pure fragrance oil, diffused as a dry mist. Five finishes. Reserve one of the first 500 units.">
-<meta property="og:image" content="assets/og-aroma7.jpg">
+<meta property="og:description" content="Pure fragrance oil, diffused as a dry mist. Three finishes. Reserve one of the first 500 units.">
+<meta property="og:image" content="assets/banner-spa-steel.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/logo-mark.png">
 <link rel="apple-touch-icon" href="assets/logo-mark.png">
@@ -22,19 +22,19 @@
    Token names kept from the dark build so page rules keep working.
    ============================================================ */
 :root{
-  --ink:#FFFFFF;                 /* page ground        */
-  --ink-2:#F7F4F0;               /* soft band          */
-  --stone:#EFEAE2;               /* deeper band        */
-  --clay:#8C8479;                /* labels, tertiary   */
-  --sand:#141210;                /* primary text       */
-  --sand-dim:#6E6862;            /* secondary text     */
-  --linen:#EFEAE2;
+  --ink:#FFFEF2;                 /* page ground        */
+  --ink-2:#F6F5E8;               /* soft band          */
+  --stone:#EBEADE;               /* deeper band        */
+  --clay:#6B6B6B;                /* labels, tertiary   */
+  --sand:#252525;                /* primary text       */
+  --sand-dim:#4A4A4A;            /* secondary text     */
+  --linen:#EBEADE;
   --gold:#A9793C;
   --gold-lite:#8A6230;           /* hover: darker on light ground */
   --accent:#A9793C;              /* retinted by the finish selector */
   --accent-soft:rgba(169,121,60,.10);
-  --edge:rgba(20,18,16,.13);
-  --dark:#141210;                /* inverse bands      */
+  --edge:#E0DFD6;
+  --dark:#252525;                /* inverse bands      */
   --display:"Roboto","Helvetica Neue",Arial,sans-serif;
   --body:"Roboto","Helvetica Neue",Arial,sans-serif;
   --maxw:1240px;
@@ -52,24 +52,24 @@ a{color:inherit}
 .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 26px}
 
 /* --- announcement bar --- */
-.ann{background:var(--dark);color:#EFE9E1;text-align:center;font-size:11px;
-  letter-spacing:.2em;text-transform:uppercase;height:40px;position:relative;overflow:hidden}
+.ann{background:var(--dark);color:#EFE9E1;text-align:center;font-size:13px;
+  letter-spacing:0;text-transform:none;height:40px;position:relative;overflow:hidden}
 .ann span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   opacity:0;transition:opacity .5s ease;padding:0 16px}
 .ann span.on{opacity:1}
 
 /* --- type --- */
 .eyebrow{
-  font-family:var(--body);font-size:11px;font-weight:500;letter-spacing:.26em;
-  text-transform:uppercase;color:var(--clay);margin:0 0 16px;
+  font-family:var(--body);font-size:14px;font-weight:500;letter-spacing:0;
+  text-transform:none;color:var(--clay);margin:0 0 16px;
 }
 h1,h2,h3{font-family:var(--display);font-weight:300;line-height:1.12;margin:0;letter-spacing:-.02em}
-h1{font-size:clamp(38px,5.2vw,62px)}
-h2{font-size:clamp(27px,3.4vw,40px)}
+h1{font-size:clamp(32px,4.2vw,52px)}
+h2{font-size:clamp(24px,2.6vw,30px)}
 h3{font-size:20px;line-height:1.3;font-weight:400;letter-spacing:-.01em}
 p{margin:0 0 18px}
 .lede{font-size:18px;color:var(--sand-dim);max-width:54ch}
-.sect{padding:92px 0;position:relative}
+.sect{padding:108px 0;position:relative}
 .sect-head{max-width:660px;margin-bottom:46px}
 
 /* --- the vent slot motif --- */
@@ -79,7 +79,7 @@ p{margin:0 0 18px}
 /* --- buttons --- */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  font-family:var(--body);font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  font-family:var(--body);font-size:14px;font-weight:500;letter-spacing:0;text-transform:none;
   padding:17px 32px;border-radius:2px;border:1px solid transparent;cursor:pointer;white-space:nowrap;
   text-decoration:none;transition:background .18s ease,color .18s ease,border-color .18s ease;
 }
@@ -91,23 +91,23 @@ p{margin:0 0 18px}
 
 /* ============================ HEADER ============================ */
 .hdr{position:sticky;top:0;z-index:60;backdrop-filter:blur(14px);
-  background:rgba(255,255,255,.92);border-bottom:1px solid var(--edge)}
+  background:rgba(255,254,242,.94);border-bottom:1px solid var(--edge)}
 .hdr-in{display:flex;align-items:center;justify-content:space-between;height:70px}
-.mark{font-family:var(--display);font-size:21px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none}
+.mark{font-family:var(--display);font-size:21px;font-weight:500;letter-spacing:0;text-transform:none;text-decoration:none}
 .mark span{color:var(--accent)}
 .mark{display:inline-flex;align-items:center}
 .mark img{height:42px;width:auto}
 .mark-sm img{height:34px}
 @media(max-width:420px){.mark img{height:34px}}
 .hdr-nav{display:flex;align-items:center;gap:32px}
-.hdr-nav a{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--sand)}
+.hdr-nav a{font-size:14px;font-weight:500;letter-spacing:0;text-transform:none;text-decoration:none;color:var(--sand)}
 .hdr-nav a:hover{color:var(--accent)}
-.hdr .btn{padding:12px 22px;font-size:10px}
+.hdr .btn{padding:13px 24px;font-size:13px}
 @media(max-width:860px){.hdr-nav a{display:none}}
 
 .field{margin-bottom:20px}
-.field label{display:block;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);margin-bottom:8px}
-.field input,.field select{width:100%;background:#FFF;border:1px solid var(--edge);color:var(--sand);
+.field label{display:block;font-size:13px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--clay);margin-bottom:8px}
+.field input,.field select{width:100%;background:#FFFEF7;border:1px solid var(--edge);color:var(--sand);
   font-family:var(--body);font-size:15px;font-weight:400;padding:14px 15px;border-radius:2px}
 .field input:focus,.field select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
 .field select{appearance:none;-webkit-appearance:none;padding-right:40px;cursor:pointer;
@@ -120,18 +120,19 @@ p{margin:0 0 18px}
 /* ============================ FOOTER ============================ */
 .ftr{border-top:1px solid var(--edge);background:var(--ink-2);padding:64px 0 110px;font-size:14px}
 .ftr-top{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px;padding-bottom:44px;border-bottom:1px solid var(--edge)}
-.ftr h4{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);margin:0 0 16px}
+.ftr h4{font-size:15px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--sand);
+  margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid var(--edge)}
 .ftr ul{list-style:none;margin:0;padding:0}
-.ftr li{margin-bottom:10px}
+.ftr li{margin-bottom:16px}
 .ftr a{color:var(--sand-dim);text-decoration:none}
 .ftr a:hover{color:var(--accent)}
 .ftr .news p{color:var(--sand-dim);font-size:14px;max-width:34ch}
 .ftr-form{display:flex;gap:8px;max-width:330px}
-.ftr-form input{flex:1;background:#FFF;border:1px solid var(--edge);border-radius:2px;padding:12px 13px;
+.ftr-form input{flex:1;background:#FFFEF7;border:1px solid var(--edge);border-radius:2px;padding:12px 13px;
   font-family:var(--body);font-size:14px;color:var(--sand)}
 .ftr-form input:focus{outline:2px solid var(--accent);outline-offset:1px}
 .ftr-form button{background:var(--dark);color:#FFF;border:0;border-radius:2px;padding:0 18px;cursor:pointer;
-  font-family:var(--body);font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+  font-family:var(--body);font-size:13px;font-weight:500;letter-spacing:0;text-transform:none}
 .ftr-bot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;
   padding-top:26px;color:var(--clay);font-size:12px}
 .ftr-bot nav{display:flex;gap:22px;flex-wrap:wrap}
@@ -143,9 +144,9 @@ p{margin:0 0 18px}
   padding:11px 16px;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid var(--edge);
   box-shadow:0 -6px 24px rgba(20,18,16,.07)}
 .dock .btn{flex:1;padding:15px 10px}
-.dock span{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--sand)}
+.dock span{font-size:12px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--sand)}
 @media(max-width:720px){.dock{display:flex}.ftr{padding-bottom:104px}
-  .btn{padding:16px 20px;font-size:11px;letter-spacing:.12em}}
+  .btn{padding:16px 20px;font-size:11px;letter-spacing:0}}
 
 /* --- reveal --- */
 .rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
@@ -165,7 +166,7 @@ p{margin:0 0 18px}
 .hero h1{margin-bottom:22px}
 .hero h1 em{font-style:normal;font-weight:400;color:var(--accent)}
 .hero-note{display:flex;flex-wrap:wrap;gap:10px 26px;margin:30px 0 34px;
-  font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--sand-dim)}
+  font-size:13px;letter-spacing:0;text-transform:none;color:var(--sand-dim)}
 .hero-note span{display:flex;align-items:center;gap:8px}
 .hero-note span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--accent)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:14px}
@@ -173,14 +174,14 @@ p{margin:0 0 18px}
 .hero-shot{position:relative}
 .hero-shot img{width:100%;border-radius:3px}
 .hero-shot::after{content:"";position:absolute;inset:0;border:1px solid var(--edge);border-radius:3px;pointer-events:none}
-.shot-tag{position:absolute;left:0;bottom:-34px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--clay)}
+.shot-tag{position:absolute;left:0;bottom:-34px;font-size:11px;letter-spacing:0;text-transform:none;color:var(--clay)}
 @media(max-width:900px){.hero-in{grid-template-columns:1fr;gap:36px}.hero{padding-top:48px}.shot-tag{position:static;margin-top:12px}}
 
 /* --- marquee strip --- */
 .strip{border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);margin-top:74px;
   padding:20px 0;overflow:hidden;background:var(--ink-2)}
 .strip-in{display:flex;gap:56px;white-space:nowrap;animation:slide 34s linear infinite;
-  font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--clay)}
+  font-size:12px;letter-spacing:0;text-transform:none;color:var(--clay)}
 .strip-in span{display:flex;align-items:center;gap:56px}
 .strip-in span::after{content:"\00B7";color:var(--accent)}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -200,14 +201,14 @@ p{margin:0 0 18px}
 .swatches{display:flex;flex-direction:column;gap:2px}
 .sw{display:flex;align-items:center;gap:16px;padding:15px 16px;background:transparent;
   border:1px solid transparent;border-left:2px solid transparent;cursor:pointer;text-align:left;
-  color:var(--sand-dim);font-family:var(--body);font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--sand-dim);font-family:var(--body);font-size:14px;letter-spacing:0;text-transform:none;
   transition:background .2s ease,color .2s ease,border-color .2s ease;width:100%}
 .sw:hover{background:rgba(20,18,16,.035);color:var(--sand)}
 .sw[aria-pressed="true"]{background:rgba(20,18,16,.05);color:var(--sand);border-left-color:var(--accent)}
 .sw i{width:30px;height:30px;border-radius:50%;flex:none;display:block;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.22),0 2px 8px rgba(20,18,16,.22)}
 .sw b{font-weight:400}
-.sw small{display:block;font-size:11px;letter-spacing:.16em;color:var(--clay);text-transform:uppercase}
+.sw small{display:block;font-size:11px;letter-spacing:0;color:var(--clay);text-transform:none}
 .finish-count{margin-top:26px;padding-top:22px;border-top:1px solid var(--edge);
   font-size:13px;color:var(--clay);line-height:1.5}
 @media(max-width:900px){.finish-grid{grid-template-columns:1fr;gap:32px}}
@@ -217,7 +218,7 @@ p{margin:0 0 18px}
 .unit{border:1px solid var(--edge);border-radius:3px;padding:34px;background:var(--ink-2);
   display:flex;flex-direction:column}
 .unit h3{margin-bottom:6px}
-.unit .cov{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.unit .cov{font-size:12px;letter-spacing:0;text-transform:none;color:var(--accent);margin-bottom:20px}
 .unit ul{list-style:none;margin:0 0 26px;padding:0;flex:1}
 .unit li{padding:11px 0;border-bottom:1px solid rgba(20,18,16,.09);font-size:15px;color:var(--sand-dim);
   display:flex;justify-content:space-between;gap:16px}
@@ -225,14 +226,14 @@ p{margin:0 0 18px}
 .price{display:flex;align-items:baseline;gap:12px;margin-bottom:22px}
 .price strong{font-family:var(--display);font-size:36px;font-weight:300;letter-spacing:-.02em;color:var(--sand)}
 .price del{color:var(--clay);font-size:16px}
-.price em{font-style:normal;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.price em{font-style:normal;font-size:11px;letter-spacing:0;text-transform:none;color:var(--accent)}
 @media(max-width:820px){.units{grid-template-columns:1fr}}
 
 /* ============================ HOW / BENEFITS ============================ */
 .bens{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--edge);
   border:1px solid var(--edge);border-radius:3px;overflow:hidden}
 .ben{background:var(--ink);padding:38px 30px}
-.ben .n{font-family:var(--display);font-size:12px;font-weight:500;color:var(--accent);margin-bottom:18px;letter-spacing:.24em}
+.ben .n{font-family:var(--display);font-size:12px;font-weight:500;color:var(--accent);margin-bottom:18px;letter-spacing:0}
 .ben h3{font-size:20px;margin-bottom:10px}
 .ben p{font-size:15px;color:var(--sand-dim);margin:0}
 @media(max-width:860px){.bens{grid-template-columns:1fr}}
@@ -255,7 +256,7 @@ p{margin:0 0 18px}
   transition:border-color .2s ease,transform .2s ease}
 .scent-body{padding:24px 26px 28px}
 .scent:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 12px 30px rgba(20,18,16,.07)}
-.scent .no{font-size:11px;letter-spacing:.26em;color:var(--clay);text-transform:uppercase}
+.scent .no{font-size:11px;letter-spacing:0;color:var(--clay);text-transform:none}
 .scent h3{font-size:23px;font-weight:400;margin:8px 0 10px}
 .scent p{font-size:14px;color:var(--sand-dim);margin:0}
 @media(max-width:1080px){.scents{grid-template-columns:repeat(3,1fr)}}
@@ -272,12 +273,12 @@ p{margin:0 0 18px}
 .res-form .field label{color:rgba(255,255,255,.55)}
 .res-form .field input,.res-form .field select{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.22);color:#FFF}
 .res-form .field input::placeholder{color:rgba(255,255,255,.42)}
-.res-form .btn-primary{background:#FFF;color:#141210;width:100%}
+.res-form .btn-primary{background:#FFFEF7;color:#141210;width:100%}
 .res-form .btn-primary:hover{background:#E4DDD3}
 .res-fine{font-size:13px;color:rgba(255,255,255,.5);margin:14px 0 0}
 .res-list{list-style:none;margin:0;padding:0}
 .res-list li{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14)}
-.res-list .k{font-family:var(--display);font-size:12px;font-weight:500;letter-spacing:.16em;color:#C79A5C;flex:none;width:26px;padding-top:5px}
+.res-list .k{font-family:var(--display);font-size:12px;font-weight:500;letter-spacing:0;color:#C79A5C;flex:none;width:26px;padding-top:5px}
 .res-list b{display:block;font-weight:500;font-family:var(--display);font-size:18px;margin-bottom:3px}
 .res-list p{margin:0;font-size:14px;color:rgba(255,255,255,.62);line-height:1.5}
 .res-ok{display:none;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.22);border-radius:3px;padding:34px}
@@ -336,7 +337,7 @@ p{margin:0 0 18px}
         <span>Cold-air diffusion</span>
         <span>HVAC-ready</span>
         <span>App scheduling</span>
-        <span>Five finishes</span>
+        <span>Three finishes</span>
       </div>
       <div class="hero-cta">
         <a class="btn btn-primary shop" href="product.html" data-cta="hero-primary">Choose your unit</a>
@@ -345,8 +346,8 @@ p{margin:0 0 18px}
       <p class="hero-trust">Free shipping, 30-day returns, 2-year warranty.</p>
     </div>
     <div class="hero-shot">
-      <img id="heroShot" src="assets/aroma7-black.jpg" alt="Aroma Good diffuser in matt black with gold detailing" width="1080" height="1080" fetchpriority="high">
-      <p class="shot-tag" id="heroTag">Shown in Matt Black &amp; Gold</p>
+      <img id="heroShot" src="assets/aroma7-steel.jpg" alt="Aroma Good diffuser in brushed steel" width="1080" height="1080" fetchpriority="high">
+      <p class="shot-tag" id="heroTag">Shown in Steel</p>
     </div>
   </div>
   <div class="strip">
@@ -362,43 +363,43 @@ p{margin:0 0 18px}
   <div class="wrap">
     <div class="sect-head rv">
       <p class="eyebrow">The finishes</p>
-      <h2>Five finishes. Pick the one you'd actually put in your space.</h2>
-      <p class="lede">Anodised aluminium body, solid brass collar, gold-anodised vent. Every finish ships as a matched pair: Column and Panel.</p>
+      <h2>Three finishes. Pick the one you'd actually put in your space.</h2>
+      <p class="lede">Anodised aluminium body with a matte cap and base. Every finish ships as a matched pair: Column and Panel.</p>
     </div>
     <div class="finish-grid">
       <div class="finish-stage rv">
-        <img class="on" data-key="black" src="assets/aroma7-black.jpg" alt="Aroma Good diffuser in matt black and gold" width="1080" height="1080">
-        <img data-key="blue" src="assets/aroma7-blue.jpg" alt="Aroma Good diffuser in midnight blue and gold" width="1080" height="1080" loading="lazy">
-        <img data-key="bronze" src="assets/aroma7-bronze.jpg" alt="Aroma Good diffuser in champagne bronze and gold" width="1080" height="1080" loading="lazy">
-        <img data-key="burgundy" src="assets/aroma7-burgundy.jpg" alt="Aroma Good diffuser in burgundy and gold" width="1080" height="1080" loading="lazy">
-        <img data-key="greige" src="assets/aroma7-greige.jpg" alt="Aroma Good diffuser in greige and gold" width="1080" height="1080" loading="lazy">
+        <img class="on" data-key="steel" src="assets/aroma7-steel.jpg" alt="Aroma Good diffuser in brushed steel" width="1080" height="1080">
+        <img data-key="charcoal" src="assets/aroma7-charcoal.jpg" alt="Aroma Good diffuser in charcoal" width="1080" height="1080" loading="lazy">
+        <img data-key="cream" src="assets/aroma7-cream.jpg" alt="Aroma Good diffuser in cream" width="1080" height="1080" loading="lazy">
       </div>
       <div class="rv">
         <div class="swatches" role="group" aria-label="Choose a finish">
-          <button class="sw" type="button" data-key="black" data-name="Matt Black &amp; Gold" data-accent="#C9A15A" aria-pressed="true">
-            <i style="background:linear-gradient(140deg,#3A3632,#100F0D)"></i>
-            <b>Matt Black &amp; Gold<small>The default answer</small></b>
+          <button class="sw" type="button" data-key="steel" data-name="Steel" data-accent="#7C8790" aria-pressed="true">
+            <i style="background:linear-gradient(140deg,#C9CDD1,#7A7F84)"></i>
+            <b>Steel<small>The default answer</small></b>
           </button>
-          <button class="sw" type="button" data-key="blue" data-name="Midnight Blue &amp; Gold" data-accent="#7C93BF" aria-pressed="false">
-            <i style="background:linear-gradient(140deg,#33456B,#141C2E)"></i>
-            <b>Midnight Blue &amp; Gold<small>Warm rooms, cool contrast</small></b>
+          <button class="sw" type="button" data-key="charcoal" data-name="Charcoal" data-accent="#5B5B5C" aria-pressed="false">
+            <i style="background:linear-gradient(140deg,#4A4A4B,#161616)"></i>
+            <b>Charcoal<small>Reads as hardware, not tech</small></b>
           </button>
-          <button class="sw" type="button" data-key="bronze" data-name="Champagne Bronze &amp; Gold" data-accent="#C8A882" aria-pressed="false">
-            <i style="background:linear-gradient(140deg,#C6AE8C,#6E5B44)"></i>
-            <b>Champagne Bronze &amp; Gold<small>Reads as hardware, not tech</small></b>
-          </button>
-          <button class="sw" type="button" data-key="burgundy" data-name="Burgundy &amp; Gold" data-accent="#B07A73" aria-pressed="false">
-            <i style="background:linear-gradient(140deg,#6B3B36,#2C1614)"></i>
-            <b>Burgundy &amp; Gold<small>For dark, panelled interiors</small></b>
-          </button>
-          <button class="sw" type="button" data-key="greige" data-name="Greige &amp; Gold" data-accent="#CBB79A" aria-pressed="false">
-            <i style="background:linear-gradient(140deg,#CFC0A9,#8A7A63)"></i>
-            <b>Greige &amp; Gold<small>Disappears into the wall</small></b>
+          <button class="sw" type="button" data-key="cream" data-name="Cream" data-accent="#B8A47C" aria-pressed="false">
+            <i style="background:linear-gradient(140deg,#F3ECDD,#D9CBAA)"></i>
+            <b>Cream<small>Disappears into the wall</small></b>
           </button>
         </div>
         <p class="finish-count">We're producing the first run in the finishes people actually choose here. Your pick carries through to the reservation form below.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ================= LIFESTYLE BANNER: STEEL ================= -->
+<section class="sect" style="padding-top:0">
+  <div class="wrap">
+    <figure class="banner rv">
+      <img src="assets/banner-spa-steel.jpg" width="3456" height="1728" loading="lazy" decoding="async"
+           alt="Aroma Good diffuser in Steel releasing a fine dry mist on a stone ledge beside a spa pool.">
+    </figure>
   </div>
 </section>
 
@@ -441,15 +442,6 @@ p{margin:0 0 18px}
   </div>
 </section>
 
-<!-- ================= BRAND BANNER ================= -->
-<section class="sect" style="padding-top:0">
-  <div class="wrap">
-    <figure class="banner rv">
-      <img src="assets/banner-diffuser.jpg" width="2000" height="1333" loading="lazy" decoding="async"
-           alt="Aroma Good diffuser in matt black on dark stone, releasing a fine dry mist, beside the Aroma Good Aromatic Oil logo and the words: Scent your space, elevate your mind.">
-    </figure>
-  </div>
-</section>
 
 <!-- ================= HOW IT WORKS ================= -->
 <section class="sect" id="how" style="background:var(--ink-2);border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)">
@@ -500,6 +492,16 @@ p{margin:0 0 18px}
         <a class="btn btn-primary shop" href="product.html" id="calcBuy" data-cta="calc">Buy this setup</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ================= LIFESTYLE BANNER: CREAM ================= -->
+<section class="sect" style="padding-top:0">
+  <div class="wrap">
+    <figure class="banner rv">
+      <img src="assets/banner-rocks-cream.jpg" width="3456" height="1728" loading="lazy" decoding="async"
+           alt="Aroma Good diffuser in Cream, tilted among dark volcanic rock, releasing a fine dry mist.">
+    </figure>
   </div>
 </section>
 
@@ -572,11 +574,9 @@ p{margin:0 0 18px}
           <div class="field">
             <label for="finishSel">Finish</label>
             <select id="finishSel" name="finish">
-              <option value="Matt Black &amp; Gold">Matt Black &amp; Gold</option>
-              <option value="Midnight Blue &amp; Gold">Midnight Blue &amp; Gold</option>
-              <option value="Champagne Bronze &amp; Gold">Champagne Bronze &amp; Gold</option>
-              <option value="Burgundy &amp; Gold">Burgundy &amp; Gold</option>
-              <option value="Greige &amp; Gold">Greige &amp; Gold</option>
+              <option value="Steel">Steel</option>
+              <option value="Charcoal">Charcoal</option>
+              <option value="Cream">Cream</option>
             </select>
           </div>
           <div class="field">
@@ -822,7 +822,7 @@ document.querySelectorAll('[data-cta]').forEach(function(el){
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"Aroma Good Cold-Air Scent Diffuser",
 "description":"Cold-air scent diffuser that atomises pure fragrance oil as a dry mist. Freestanding Column up to 1,500 sq ft; HVAC-connected Panel up to 12,000 sq ft.",
-"brand":{"@type":"Brand","name":"Aroma Good"},"image":"assets/og-aroma7.jpg",
+"brand":{"@type":"Brand","name":"Aroma Good"},"image":"assets/banner-spa-steel.jpg",
 "offers":{"@type":"AggregateOffer","priceCurrency":"USD","lowPrice":"349","highPrice":"849","availability":"https://schema.org/PreOrder"}}
 </script>
 <script>
