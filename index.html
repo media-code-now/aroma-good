@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aroma Good | Cold-air scent diffusion for rooms and whole buildings</title>
-<meta name="description" content="Aroma Good diffuses pure fragrance oil as a dry mist. No heat, no water, no residue. Freestanding Column for a single room, HVAC-connected Panel for up to 12,000 sq ft. Reserve one of the first 500 units.">
+<title>Aroma Good | Free Column Diffuser with $29.99/month Scent Plan</title>
+<meta name="description" content="Get a free Column diffuser with a $29.99/month scent subscription, reduced from $39.99/month. Choose your finish and signature scent.">
 <link rel="canonical" href="https://aroma7.com/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Aroma Good | Cold-air scent diffusion">
-<meta property="og:description" content="Pure fragrance oil, diffused as a dry mist. Three finishes. Reserve one of the first 500 units.">
+<meta property="og:title" content="Aroma Good | Free Column with Your Scent Plan">
+<meta property="og:description" content="Free Column diffuser. $29.99/month scent subscription instead of $39.99/month. Three finishes, five scents.">
 <meta property="og:image" content="assets/banner-spa-steel.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/logo-mark.png">
@@ -214,7 +214,7 @@ p{margin:0 0 18px}
 @media(max-width:900px){.finish-grid{grid-template-columns:1fr;gap:32px}}
 
 /* ============================ TWO UNITS ============================ */
-.units{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.units{display:grid;grid-template-columns:minmax(0,760px);gap:22px}
 .unit{border:1px solid var(--edge);border-radius:3px;padding:34px;background:var(--ink-2);
   display:flex;flex-direction:column}
 .unit h3{margin-bottom:6px}
@@ -297,30 +297,54 @@ p{margin:0 0 18px}
 .faq details p{padding:0 40px 24px 0;color:var(--sand-dim);font-size:16px;max-width:74ch}
 .faq summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
+/* --- urgency / scarcity --- */
+.scarcity{margin:16px 0 0;font-size:15px;font-weight:500;color:var(--accent)}
+.mini-note{font-size:13px;color:var(--clay);margin:-10px 0 22px}
+.claim-chip{display:inline-flex;align-items:center;gap:8px;margin:14px 0 0;padding:8px 14px;
+  border:1px solid var(--edge);border-radius:20px;font-size:13px;color:var(--sand-dim);background:var(--ink-2)}
+.claim-chip[hidden]{display:none}
+.claim-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+
+/* --- exit-intent modal --- */
+.exit-modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
+  background:rgba(20,18,16,.55);padding:20px}
+.exit-modal[hidden]{display:none}
+.exit-modal-card{position:relative;background:#FFFEF7;border:1px solid var(--edge);border-radius:4px;
+  padding:40px 36px;max-width:420px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.exit-modal-card h3{margin:6px 0 14px;font-size:24px}
+.exit-modal-card p{color:var(--sand-dim);margin:0 0 14px}
+.exit-modal-card .fine{font-size:13px;color:var(--clay);margin-bottom:22px}
+.exit-modal-actions{display:flex;flex-direction:column;gap:10px}
+.exit-modal-close{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;
+  border:1px solid var(--edge);background:none;font-size:18px;line-height:1;cursor:pointer;color:var(--clay)}
+.exit-modal-close:hover{background:var(--ink-2)}
 
 
 
 
 
 </style>
+<link rel="stylesheet" href="assets/cart.css">
+<script src="assets/cart-store.js"></script>
+<script src="assets/cart-ui.js" defer></script>
 </head>
 <body>
 
 <div class="ann" aria-label="Announcements">
-  <span class="on">Free shipping on US orders over $175</span>
-  <span>A free 200 ml starter scent with every diffuser</span>
+  <span class="on">Free Column diffuser with your $29.99/month scent subscription</span>
+  <span>Save $10/month &mdash; $29.99 instead of $39.99</span>
   <span>30-day returns and a 2-year warranty</span>
 </div>
 <header class="hdr">
   <div class="wrap hdr-in">
     <a class="mark" href="#top"><img src="assets/logo-aroma-good.png" width="485" height="154" alt="Aroma Good"></a>
-    <nav class="hdr-nav">
-      <a href="#finish">Finishes</a>
-      <a href="#units">Units</a>
-      <a href="#scents">Scents</a>
-      <a href="#faq">FAQ</a>
+    <nav class="hdr-nav" aria-label="Main">
+      <a href="collections.html">Collections</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <a class="btn btn-primary shop" href="product.html" data-cta="header">Buy now</a>
+    <a class="btn btn-primary shop" href="product.html?unit=column#buy" data-cta="header">Get my free diffuser</a>
   </div>
 </header>
 
@@ -330,17 +354,18 @@ p{margin:0 0 18px}
 <section class="hero">
   <div class="wrap hero-in">
     <div>
-      <p class="eyebrow">Founding price, first production run</p>
+      <p class="eyebrow">Free Column with your scent subscription</p>
       <h1>Scent is the first thing<br>anyone notices. <em>Own it.</em></h1>
-      <p class="lede">Aroma Good turns pure fragrance oil into a dry, cold mist. No heat, no water, no residue on your surfaces. One unit scents a room. One scents a whole building.</p>
+      <p class="scarcity">Your Column diffuser is free with the scent plan: $29.99/month instead of $39.99/month.</p>
+      <p class="lede">Aroma Good turns pure fragrance oil into a dry, cold mist. No heat, no water, no residue on your surfaces. The freestanding Column brings your signature scent into your everyday space.</p>
       <div class="hero-note">
         <span>Cold-air diffusion</span>
-        <span>HVAC-ready</span>
+        <span>Freestanding design</span>
         <span>App scheduling</span>
         <span>Three finishes</span>
       </div>
       <div class="hero-cta">
-        <a class="btn btn-primary shop" href="product.html" data-cta="hero-primary">Choose your unit</a>
+        <a class="btn btn-primary shop" href="product.html?unit=column#buy" data-cta="hero-primary">Get my free diffuser</a>
         <a class="btn btn-ghost" href="#calc" data-cta="hero-secondary">Find your size</a>
       </div>
       <p class="hero-trust">Free shipping, 30-day returns, 2-year warranty.</p>
@@ -364,7 +389,7 @@ p{margin:0 0 18px}
     <div class="sect-head rv">
       <p class="eyebrow">The finishes</p>
       <h2>Three finishes. Pick the one you'd actually put in your space.</h2>
-      <p class="lede">Anodised aluminium body with a matte cap and base. Every finish ships as a matched pair: Column and Panel.</p>
+      <p class="lede">Anodised aluminium body with a matte cap and base. Choose Steel, Charcoal, or Cream for your Column.</p>
     </div>
     <div class="finish-grid">
       <div class="finish-stage rv">
@@ -407,9 +432,9 @@ p{margin:0 0 18px}
 <section class="sect" id="units">
   <div class="wrap">
     <div class="sect-head rv">
-      <p class="eyebrow">Two units, one system</p>
-      <h2>Scent one room, or every room.</h2>
-      <p class="lede">Both units run the same 200 ml pure-oil cartridge and the same app. The difference is where the mist goes.</p>
+      <p class="eyebrow">The Column scent plan</p>
+      <h2>Make your room feel like your favorite hotel.</h2>
+      <p class="lede">A freestanding diffuser, your choice of fragrance, and app-controlled scenting. The Column is included free with your monthly scent plan.</p>
     </div>
     <div class="units rv">
       <article class="unit">
@@ -422,22 +447,12 @@ p{margin:0 0 18px}
           <li>Cartridge life <b>~90 days</b></li>
           <li>Power <b>USB-C, 12 W</b></li>
         </ul>
-        <div class="price"><strong>$349</strong><del>$449</del><em>Founding price</em></div>
-        <a class="btn btn-ghost shop" href="product.html?unit=column" data-cta="unit-column">Buy the Column</a>
+        <div class="price"><strong>$29.99</strong><del>$39.99</del><em>/month · scent subscription</em></div>
+        <p class="mini-note">FREE Column diffuser included with your monthly scent plan</p>
+        <a class="btn btn-ghost shop" href="product.html?unit=column" data-cta="unit-column">Get my free diffuser</a>
+        <p class="mini-note" style="margin-top:14px">Scent subscription: $29.99/month. Refill delivery and commitment terms will be confirmed before enrollment.</p>
       </article>
-      <article class="unit">
-        <h3>Aroma Good Panel</h3>
-        <p class="cov">HVAC-connected · up to 12,000 sq ft</p>
-        <ul>
-          <li>Placement <b>Wall, near air handler</b></li>
-          <li>Footprint <b>11 × 13 in / 28 × 33 cm</b></li>
-          <li>Install <b>Duct tap, 30 min</b></li>
-          <li>Cartridge life <b>~60 days</b></li>
-          <li>Control <b>Wi-Fi + 7-day schedule</b></li>
-        </ul>
-        <div class="price"><strong>$849</strong><del>$1,095</del><em>Founding price</em></div>
-        <a class="btn btn-ghost shop" href="product.html?unit=panel" data-cta="unit-panel">Buy the Panel</a>
-      </article>
+
     </div>
   </div>
 </section>
@@ -457,7 +472,7 @@ p{margin:0 0 18px}
       <div class="ben"><p class="n">02</p><h3>Nothing lands on surfaces</h3><p>Dry mist means no oily residue on mirrors, counters, or upholstery, and no humidity added to the room.</p></div>
       <div class="ben"><p class="n">03</p><h3>Intensity you set</h3><p>Ten output levels, per-hour scheduling, and separate weekend settings. Change it from your phone.</p></div>
       <div class="ben"><p class="n">04</p><h3>Oil lasts longer</h3><p>Atomisation uses a fraction of the oil a heat diffuser burns through for the same perceived strength.</p></div>
-      <div class="ben"><p class="n">05</p><h3>Rides your existing HVAC</h3><p>The Panel taps into the supply duct you already have. No new ductwork, no ceiling work.</p></div>
+      <div class="ben"><p class="n">05</p><h3>Place it where you live</h3><p>The Column stands on a floor or console. Plug it in and choose your schedule in the app.</p></div>
       <div class="ben"><p class="n">06</p><h3>Built to be seen</h3><p>Machined aluminium and brass, not white plastic. It sits in the room like a piece of hardware, not an appliance.</p></div>
     </div>
   </div>
@@ -510,7 +525,7 @@ p{margin:0 0 18px}
   <div class="wrap">
     <div class="sect-head rv">
       <p class="eyebrow">The library</p>
-      <h2>Five scents at launch. Sample set ships free with every reservation.</h2>
+      <h2>Five signature scents. Choose yours with the free Column scent plan.</h2>
     </div>
     <figure class="banner banner-lead rv">
       <img src="assets/banner-oil.jpg" width="2000" height="1333" loading="lazy" decoding="async"
@@ -546,12 +561,12 @@ p{margin:0 0 18px}
   <div class="wrap">
     <div class="res-grid">
       <div class="rv">
-        <p class="eyebrow">Reserve</p>
-        <h2>Not ready today?</h2>
-        <p class="lede">Leave your email and we will hold the founding price for you for 30 days. One message, no sequence, unsubscribe in a click.</p>
+        <p class="eyebrow">Questions about the plan?</p>
+        <h2>Your free diffuser starts with your signature scent.</h2>
+        <p class="lede">Request details about the $29.99/month scent plan with a free Column diffuser. No payment or enrollment when you ask for information.</p>
         <ul class="res-list">
-          <li><span class="k">01</span><div><b>Price held</b><p>Your founding price is locked for 30 days from today.</p></div></li>
-          <li><span class="k">02</span><div><b>Free scent samples</b><p>Tell us where it is going and we will send the sample set that suits it.</p></div></li>
+          <li><span class="k">01</span><div><b>$29.99/month</b><p>Save $10/month compared with the $39.99/month scent plan price.</p></div></li>
+          <li><span class="k">02</span><div><b>Free Column diffuser</b><p>Your monthly scent plan includes the diffuser and a 200 ml starter scent.</p></div></li>
           <li><span class="k">03</span><div><b>You decide later</b><p>Buy when you are ready. Nothing is charged and nothing is shipped until you do.</p></div></li>
         </ul>
       </div>
@@ -565,9 +580,8 @@ p{margin:0 0 18px}
           <div class="field">
             <label for="unit">Which unit</label>
             <select id="unit" name="unit">
-              <option value="Column">Aroma Good Column, single room, $349</option>
-              <option value="Panel">Aroma Good Panel, whole building, $849</option>
-              <option value="Both">Both</option>
+              <option value="Column">Free Column with scent plan, $29.99/month</option>
+              <option value="Multiple">Multiple Columns</option>
               <option value="Unsure">Not sure yet</option>
             </select>
           </div>
@@ -588,12 +602,14 @@ p{margin:0 0 18px}
             </select>
           </div>
           <input type="text" name="company_website" id="hp" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-          <button class="btn btn-primary" type="submit" data-cta="reserve-submit">Hold my price</button>
-          <p class="res-fine">No payment, no spam. We email once when your hold is about to expire.</p>
+          <button class="btn btn-primary" type="submit" data-cta="reserve-submit">Send me plan details</button>
+          <p id="resError" role="alert" hidden></p>
+          <p class="res-fine">Prefer email? <a href="mailto:hello@aroma7.com?subject=Scent%20plan%20details">Ask about the scent plan</a>.</p>
+          <p class="res-fine">Information request only. No payment or automatic subscription enrollment.</p>
         </form>
         <div class="res-ok" id="resOk" role="status">
-          <h3>Your price is held.</h3>
-          <p id="resOkMsg">Your founding price is locked for 30 days.</p>
+          <h3>Your request is received.</h3>
+          <p id="resOkMsg">Thank you for your interest. No order has been placed and no subscription has started.</p>
         </div>
       </div>
     </div>
@@ -603,14 +619,13 @@ p{margin:0 0 18px}
 <!-- ================= FAQ ================= -->
 <section class="sect faq" id="faq">
   <div class="wrap" style="max-width:900px">
-    <div class="sect-head rv"><p class="eyebrow">Questions</p><h2>Before you reserve.</h2></div>
+    <div class="sect-head rv"><p class="eyebrow">Questions</p><h2>Before you start your scent plan.</h2></div>
     <div class="rv">
-      <details open><summary>When will it arrive?</summary><p>Columns ship within 3 business days, Panels within 5. Ground shipping in the continental US takes a further 3 to 5 days and is free. Express is $24 at checkout.</p></details>
+      <details open><summary>When will it arrive?</summary><p>Columns ship within 3 business days. Ground shipping in the continental US takes a further 3 to 5 days and is free. Express is $24 at checkout.</p></details>
       <details><summary>Can I return it?</summary><p>Yes. Send it back within 30 days for a full refund as long as the scent cartridge is unopened. We cover return shipping on anything defective.</p></details>
-      <details><summary>Does the Panel really need HVAC?</summary><p>Yes. It mounts near your air handler and taps the supply duct, which is how it reaches 12,000 sq ft from one point. Most installs take a technician about 30 minutes. If you don't have central air, the Column is your unit.</p></details>
       <details><summary>Is it safe around people and pets?</summary><p>The oils are IFRA-compliant and diffused at very low concentration. Nothing is heated and no water is added, so there's no humidity, no plate to burn, and no residue.</p></details>
       <details><summary>Can I use my own fragrance oil?</summary><p>Cartridges are sealed to protect the atomiser, but we'll produce custom blends for commercial reservations of ten units or more. Mention it in your reply to the confirmation email.</p></details>
-      <details><summary>What's the running cost?</summary><p>A 200 ml cartridge runs about 90 days in a Column at moderate output. Refills are $59, or $49 on a subscription you can pause any time.</p></details>
+      <details><summary>What's the running cost?</summary><p>The Column is free with a $29.99/month scent subscription, reduced from $39.99/month. Refill delivery and commitment terms will be confirmed before enrollment.</p></details>
     </div>
   </div>
 </section>
@@ -622,18 +637,14 @@ p{margin:0 0 18px}
     <div class="ftr-top">
       <div class="news">
         <a class="mark mark-sm" href="index.html"><img src="assets/logo-aroma-good.png" width="485" height="154" alt="Aroma Good"></a>
-        <p style="margin:16px 0 18px">Cold-air diffusion for rooms and whole buildings. Sign up for scent drops and restock notices.</p>
-        <div class="ftr-form">
-          <input type="email" id="ftrEmail" placeholder="Email address" aria-label="Email address" autocomplete="email">
-          <button type="button" id="ftrBtn">Join</button>
-        </div>
-        <p id="ftrMsg" style="font-size:13px;color:var(--accent);margin:10px 0 0;display:none">Thanks, you are on the list.</p>
+        <p style="margin:16px 0 18px">Cold-air diffusion for your everyday spaces. Get help choosing your scent and setup.</p>
+        <a class="btn btn-primary" href="contact.html">Talk to us</a>
       </div>
       <div>
         <h4>Shop</h4>
         <ul>
+          <li><a href="collections.html">All collections</a></li>
           <li><a href="product.html?unit=column">Aroma Good Column</a></li>
-          <li><a href="product.html?unit=panel">Aroma Good Panel</a></li>
           <li><a href="index.html#scents">Scents</a></li>
           <li><a href="index.html#finish">Finishes</a></li>
         </ul>
@@ -641,34 +652,50 @@ p{margin:0 0 18px}
       <div>
         <h4>Learn</h4>
         <ul>
+          <li><a href="about.html">About Aroma Good</a></li>
           <li><a href="index.html#how">Cold-air diffusion</a></li>
           <li><a href="index.html#calc">Sizing tool</a></li>
-          <li><a href="index.html#units">Compare units</a></li>
+          <li><a href="index.html#units">Explore the Column</a></li>
           <li><a href="mailto:hello@aroma7.com">Business scenting</a></li>
         </ul>
       </div>
       <div>
         <h4>Support</h4>
         <ul>
-          <li><a href="index.html#faq">FAQ</a></li>
-          <li><a href="mailto:hello@aroma7.com">Contact</a></li>
-          <li><a href="index.html#faq">Shipping and returns</a></li>
-          <li><a href="index.html#faq">Warranty</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="shipping.html">Shipping</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="returns.html#warranty">Warranty</a></li>
         </ul>
       </div>
     </div>
     <div class="ftr-bot">
       <p style="margin:0">&copy; 2026 Aroma Good. Renderings shown; final finishes may vary slightly.</p>
       <nav>
-        <a href="#">Privacy policy</a><a href="#">Terms of sale</a><a href="#">Accessibility</a>
+        <a href="privacy.html">Privacy policy</a><a href="terms.html">Terms</a><a href="contact.html#accessibility">Accessibility help</a>
       </nav>
     </div>
   </div>
 </footer>
 
+<div class="exit-modal" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle" hidden>
+  <div class="exit-modal-card">
+    <button class="exit-modal-close" type="button" id="exitModalClose" aria-label="Close">&times;</button>
+    <p class="eyebrow">Your scent. Your free diffuser.</p>
+    <h3 id="exitModalTitle">Make the Column yours for $0.</h3>
+    <p>Get a free Column diffuser with the $29.99/month scent subscription, reduced from $39.99/month.</p>
+    <p class="fine">Included with the recurring $29.99/month scent subscription.</p>
+    <div class="exit-modal-actions">
+      <a class="btn btn-primary" href="product.html?unit=column#buy" id="exitModalCta" data-cta="exit-intent">Get my free diffuser</a>
+      <button class="btn btn-ghost" type="button" id="exitModalDismiss">No thanks</button>
+    </div>
+  </div>
+</div>
+
 <div class="dock">
-  <span>From $349</span>
-  <a class="btn btn-primary shop" href="product.html" data-cta="dock">Buy now</a>
+  <span>Free Column &middot; $29.99/month scent plan</span>
+  <a class="btn btn-primary shop" href="product.html?unit=column#buy" data-cta="dock">Get my free diffuser</a>
 </div>
 
 <script>
@@ -749,18 +776,16 @@ function track(name, params){
       note = 'Well inside a single Column\u2019s range. Run it around level 3 of 10 so the scent reads as part of the room, not an event.'; }
     else if (a <= 1500){ out = 'One Aroma Good Column'; pick = 'Column';
       note = 'A single Column covers this at roughly level 5 of 10, leaving headroom for open doors and foot traffic.'; }
-    else if (a <= 3000){ out = 'Two Columns, or one Panel'; pick = 'Both';
-      note = 'Two Columns work if the space is broken into rooms. If it\u2019s open and you have central air, one Panel is cleaner and cheaper per square foot.'; }
-    else if (a <= 12000){ out = 'One Aroma Good Panel'; pick = 'Panel';
-      note = 'This is what the Panel is built for: one duct tap, even coverage, nothing visible on the floor.'; }
-    else { out = 'Two Panels'; pick = 'Panel';
-      note = 'Above 12,000 sq ft we split the load across zones. Reserve and note your layout, and we\u2019ll size it properly with you.'; }
+    else if (a <= 3000){ out = 'Consider two Columns'; pick = 'Multiple';
+      note = 'Separate rooms may benefit from their own Column. Each scent plan is $29.99/month. Contact us to check your layout before choosing quantities.'; }
+    else { out = 'Let us help size your space'; pick = 'Unsure';
+      note = 'Larger layouts need a room-by-room assessment. Share your dimensions and airflow so we can advise on Column placement.'; }
     res.textContent = out; why.textContent = note;
     if (unit) unit.value = pick;
     var buy = document.getElementById('calcBuy');
     if (buy){
-      buy.setAttribute('href', setParam(buy.getAttribute('href'), 'unit',
-        pick === 'Panel' ? 'panel' : 'column'));
+      buy.setAttribute('href', a > 1500 ? 'contact.html' : 'product.html?unit=column#buy');
+      buy.textContent = a > 1500 ? 'Get sizing advice' : 'Explore the Column';
     }
   }
   sqft.addEventListener('input', run); ceil.addEventListener('change', run); run();
@@ -790,21 +815,35 @@ document.querySelectorAll('[data-cta]').forEach(function(el){
       sqft:    document.getElementById('sqft').value,
       page:    location.href
     };
-    track('reserve_submit', data);
+    var error = document.getElementById('resError');
+    var submit = form.querySelector('button[type="submit"]');
+    error.hidden = true;
+    if (!FORM_ENDPOINT){
+      error.textContent = 'Online requests are not available yet. Email hello@aroma7.com for plan details. Nothing has been submitted.';
+      error.hidden = false;
+      return;
+    }
+    submit.disabled = true;
 
     var done = function(){
       form.style.display = 'none';
       ok.style.display = 'block';
       msg.textContent = 'Your ' + data.unit + ' in ' + data.finish +
-        ' is held at the founding price for 30 days. Confirmation sent to ' + data.email + '.';
+        ' plan information request was received. No order has been placed and no subscription has started.';
+      track('reserve_submit', {unit:data.unit, finish:data.finish});
       ok.scrollIntoView({block:'center', behavior:'smooth'});
     };
 
-    if (!FORM_ENDPOINT){ done(); return; }
     fetch(FORM_ENDPOINT, {
       method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
       body: JSON.stringify(data)
-    }).then(done).catch(done);
+    }).then(function(response){
+      if (!response.ok) throw new Error('Request failed');
+      done();
+    }).catch(function(){
+      error.textContent = 'Your request could not be sent. Please try again or email hello@aroma7.com.';
+      error.hidden = false;
+    }).finally(function(){ submit.disabled = false; });
   });
 })();
 
@@ -817,13 +856,47 @@ document.querySelectorAll('[data-cta]').forEach(function(el){
   }, {rootMargin:'0px 0px -8% 0px', threshold:.08});
   els.forEach(function(el){ io.observe(el); });
 })();
+
+/* ---------- exit-intent ---------- */
+(function(){
+  var modal = document.getElementById('exitModal');
+  if (!modal) return;
+  var closeBtn = document.getElementById('exitModalClose');
+  var dismissBtn = document.getElementById('exitModalDismiss');
+  var cta = document.getElementById('exitModalCta');
+  var shown = false;
+
+  function alreadyShown(){
+    try { return !!sessionStorage.getItem('exitIntentShown'); } catch (e) { return false; }
+  }
+  function markShown(){
+    try { sessionStorage.setItem('exitIntentShown', '1'); } catch (e) {}
+  }
+  function open(){
+    if (shown || alreadyShown()) return;
+    shown = true;
+    markShown();
+    modal.hidden = false;
+    track('exit_intent_shown', {});
+  }
+  function close(){ modal.hidden = true; }
+
+  document.addEventListener('mouseout', function(e){
+    if (!e.relatedTarget && e.clientY <= 0) open();
+  });
+  closeBtn.addEventListener('click', close);
+  dismissBtn.addEventListener('click', function(){ track('exit_intent_dismiss', {}); close(); });
+  modal.addEventListener('click', function(e){ if (e.target === modal) close(); });
+  cta.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) close(); });
+})();
 </script>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"Aroma Good Cold-Air Scent Diffuser",
-"description":"Cold-air scent diffuser that atomises pure fragrance oil as a dry mist. Freestanding Column up to 1,500 sq ft; HVAC-connected Panel up to 12,000 sq ft.",
+{"@context":"https://schema.org","@type":"Product","name":"Aroma Good Scent Plans and Diffusers",
+"description":"Free Column diffuser with a $29.99/month scent subscription, reduced from $39.99/month.",
 "brand":{"@type":"Brand","name":"Aroma Good"},"image":"assets/banner-spa-steel.jpg",
-"offers":{"@type":"AggregateOffer","priceCurrency":"USD","lowPrice":"349","highPrice":"849","availability":"https://schema.org/PreOrder"}}
+"offers":{"@type":"Offer","priceCurrency":"USD","price":"29.99","availability":"https://schema.org/PreOrder"}}
 </script>
 <script>
 /* rotating announcement bar */
@@ -838,17 +911,6 @@ document.querySelectorAll('[data-cta]').forEach(function(el){
   }, 4200);
 })();
 </script>
-<script>
-(function(){
-  var b = document.getElementById('ftrBtn');
-  if (!b) return;
-  b.addEventListener('click', function(){
-    var e = document.getElementById('ftrEmail');
-    if (!e.value.trim() || !e.checkValidity()){ e.focus(); return; }
-    document.getElementById('ftrMsg').style.display = 'block';
-    e.value = '';
-  });
-})();
-</script>
+
 </body>
 </html>

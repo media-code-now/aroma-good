@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Cart browser tests</title><style>body{font:14px sans-serif;margin:16px}iframe{width:390px;height:844px;border:1px solid #ccc}#result{white-space:pre-wrap}</style></head><body><h1>Cart browser tests</h1><pre id="result">RUNNING</pre><iframe id="shop" title="Store test"></iframe><script>
+(async function(){
+ const frame=document.getElementById('shop'), output=document.getElementById('result'), passed=[];
+ const storageKey='aroma-good-cart-v1', original=localStorage.getItem(storageKey);
+ const keepFixture=new URLSearchParams(location.search).has('fixture');
+ localStorage.removeItem(storageKey);
+ function assert(value,message){if(!value)throw Error(message);passed.push(message)}
+ function load(path){return new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Page load timed out: '+path)),10000);frame.onload=()=>{clearTimeout(timer);resolve(frame.contentWindow)};frame.src='../'+path;});}
+ try{
+  let w=await load('product.html?unit=column&finish=cream&scent=Santal');
+  w.document.getElementById('addon').click();
+  const add=w.document.getElementById('addBtn');add.focus();add.click();
+  assert(w.document.querySelector('dialog').open,'Product add opens the native drawer');
+  assert(w.AromaCart.totals().subtotal===8899,'Selected plan and one spare total $88.99');
+  assert(w.document.querySelector('[data-ag-cart-count]').textContent==='2','Header badge counts cart items');
+  assert(w.document.activeElement.classList.contains('ag-cart-close'),'Drawer receives keyboard focus');
+  w.document.querySelector('.ag-cart-close').click();
+  await new Promise(r=>setTimeout(r,30));
+  assert(w.document.activeElement.id==='addBtn','Closing drawer restores focus');
+  w=await load('product.html?unit=column&finish=steel&scent=White%20Tea');
+  w.document.getElementById('dockBtn').click();
+  assert(w.AromaCart.getItems().length===3,'Mobile add preserves earlier cart items');
+  w.document.querySelector('[data-ag-action="more"]').click();
+  assert(w.AromaCart.totals().monthly===8997,'Drawer quantity control updates recurring amount');
+  const url=w.AromaCart.checkoutURL();
+  w=await load('cart.html');
+  assert(w.document.querySelectorAll('[data-ag-cart-page] .ag-cart-line').length===3,'Full cart persists all variants across navigation');
+  assert(w.document.querySelector('[data-ag-cart-page]').textContent.includes('$148.97'),'Full cart shows first-payment total');
+  assert(w.document.documentElement.scrollWidth<=w.innerWidth,'Full cart fits a 390px viewport');
+  w=await load(url);
+  assert(w.document.querySelectorAll('#checkoutItems .line').length===3,'Checkout renders every cart line');
+  assert(w.document.getElementById('tSub').textContent==='$148.97','Checkout preserves the cart subtotal');
+  assert(w.document.getElementById('recurringAmount').textContent.includes('$89.97/month'),'Checkout excludes spare cartridges from renewals');
+  assert(w.document.documentElement.scrollWidth<=w.innerWidth,'Checkout fits a 390px viewport');
+  w.document.getElementById('promo').value='WELCOME5';w.document.getElementById('promoBtn').click();
+  assert(w.document.getElementById('tDisc').textContent==='−$7.45','Discount keeps cents and applies to first payment');
+  ['email','fname','lname','addr1','city','zip'].forEach(id=>w.document.getElementById(id).value=id==='email'?'test@example.com':'Test');
+  w.document.getElementById('payBtn').click();
+  assert(w.document.getElementById('done').style.display==='block','Demo checkout previews a multi-item cart');
+  assert(w.AromaCart.getItems().length===3,'Preview does not clear unpurchased items');
+  w=await load('cart.html');
+  while(w.AromaCart.getItems().length)w.document.querySelector('[data-ag-cart-page] [data-ag-action="remove"]').click();
+  assert(w.document.querySelector('[data-ag-cart-page]').textContent.includes('Your cart is empty'),'Removing all lines shows the empty state');
+  w=await load('checkout.html?cart=1');assert(w.document.getElementById('payBtn').disabled,'Empty checkout cannot be submitted');
+  w=await load('collections.html');assert(!!w.document.querySelector('[data-ag-cart-open]'),'Information pages also expose the cart');
+  // Keep one populated mobile drawer visible for optional screenshots.
+  w=await load('product.html?unit=column&finish=charcoal&scent=White%20Tea');w.document.getElementById('addBtn').click();
+  assert(w.document.querySelector('dialog').getBoundingClientRect().width<=w.innerWidth,'Drawer fits the mobile viewport');
+  output.textContent='PASS ('+passed.length+' checks)\n'+passed.join('\n');document.body.dataset.result='pass';
+ }catch(e){output.textContent='FAIL: '+e.stack+'\nPassed:\n'+passed.join('\n');document.body.dataset.result='fail';}
+ finally{if(!keepFixture){if(original===null)localStorage.removeItem(storageKey);else localStorage.setItem(storageKey,original);}}
+})();
+</script></body></html>

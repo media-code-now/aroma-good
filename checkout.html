@@ -226,7 +226,14 @@ p{margin:0 0 18px}
 .done p{color:var(--sand-dim)}
 .done .ref{display:inline-block;border:1px solid var(--edge);border-radius:2px;padding:12px 20px;margin:14px 0 26px;
   font-size:14px;letter-spacing:0;color:var(--sand)}
+#checkoutItems .line{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px}
+#checkoutItems .line img{width:64px;height:76px;grid-row:span 2}
+#checkoutItems .line .amt{grid-column:2;margin-left:0;font-size:14px}
+#payBtn:disabled{opacity:.5;cursor:not-allowed}
 </style>
+<link rel="stylesheet" href="assets/cart.css">
+<script src="assets/cart-store.js"></script>
+<script src="assets/cart-ui.js" defer></script>
 </head>
 <body>
 
@@ -340,25 +347,22 @@ p{margin:0 0 18px}
         <b>Demo mode</b>
         Card details are not being collected on this page. Connect Stripe and set
         <code>DEMO_MODE = false</code> in the script to take live payments. Submitting now
-        shows the confirmation screen without charging anything.
+        previews the order without charging anything or starting a subscription.
       </div>
     </div>
   </form>
 
   <!-- ================= SUMMARY ================= -->
   <aside class="summary">
-    <div class="line">
-      <img id="lineImg" src="assets/aroma7-steel.jpg" alt="">
-      <div>
-        <h3 id="lineName">Aroma Good Column</h3>
-        <p id="lineMeta">Steel<br>Starter scent: First Light<br>Qty 1</p>
-      </div>
-      <span class="amt" id="lineAmt">$349</span>
+    <h2 style="font-size:22px;margin-bottom:18px">Order summary</h2>
+    <p id="checkoutNotice" class="fine" role="status" hidden></p>
+    <div id="checkoutItems"></div>
+    <p><a href="cart.html" id="editCart" style="font-size:14px">Edit your cart</a></p>
+    <div id="subscriptionSummary" class="fine" style="text-align:left;margin:18px 0">
+      <p><strong>Column diffuser included: $0</strong></p>
+      <p id="recurringAmount">Recurring scent plan: $29.99/month before tax. One-time extras are not included in the recurring charge.</p>
+      <p>Refill delivery and commitment terms will be confirmed before enrollment. This checkout is a preview; no subscription will be started.</p>
     </div>
-    <div class="line-2" id="addonLine" style="display:none">
-      <span>Spare cartridge, 200 ml</span><span id="addonAmt">$59</span>
-    </div>
-
     <div class="promo">
       <input type="text" id="promo" placeholder="Discount code" aria-label="Discount code">
       <button type="button" id="promoBtn">Apply</button>
@@ -366,27 +370,32 @@ p{margin:0 0 18px}
     <p class="promo-msg" id="promoMsg"></p>
 
     <div class="totals">
-      <div><span>Subtotal</span><span id="tSub">$349</span></div>
+      <div><span id="subtotalLabel">First payment subtotal</span><span id="tSub">$0.00</span></div>
       <div><span>Discount</span><span id="tDisc">$0</span></div>
       <div><span>Shipping</span><span id="tShip">Free</span></div>
-      <div><span>Estimated tax</span><span id="tTax">$29</span></div>
-      <div class="grand"><span>Total</span><b id="tGrand">$378</b></div>
+      <div><span>Estimated tax</span><span id="tTax">$0.00</span></div>
+      <div class="grand"><span>Total</span><b id="tGrand">$0.00</b></div>
     </div>
 
-    <button class="btn btn-primary" type="submit" form="coForm" id="payBtn" data-cta="place-order">Pay $378</button>
-    <p class="fine">By placing this order you agree to the terms of sale and the 30-day return policy. Estimated tax is finalised at capture.</p>
+    <button class="btn btn-primary" type="submit" form="coForm" id="payBtn" data-cta="place-order" disabled>Cart is empty</button>
+    <p class="fine">Review the <a href="terms.html">terms and subscription details</a>, <a href="returns.html">return policy</a>, and <a href="privacy.html">privacy notice</a>. This preview does not place an order. Applicable tax will be confirmed before live payment.</p>
 
     <div class="badges">
-      <span>Encrypted checkout</span><span>Free returns</span><span>2-year warranty</span>
+      <span>Encrypted checkout</span><span>30-day returns · conditions apply</span><span>2-year warranty</span>
     </div>
   </aside>
 </main>
+<footer class="wrap" style="padding:32px 26px 64px">
+  <nav aria-label="Customer information" style="display:flex;flex-wrap:wrap;gap:16px 24px;font-size:14px">
+    <a href="collections.html">Collections</a><a href="about.html">About</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a><a href="shipping.html">Shipping</a><a href="returns.html">Returns</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
+  </nav>
+</footer>
 
 <!-- ================= CONFIRMATION ================= -->
 <section class="done wrap" id="done">
   <div class="slot" aria-hidden="true"></div>
-  <h1>Order placed.</h1>
-  <p id="doneMsg">A receipt is on its way.</p>
+  <h1>Checkout preview complete.</h1>
+  <p id="doneMsg">No payment was taken and no subscription was started.</p>
   <p class="ref" id="doneRef">Order A7-000000</p>
   <p><a class="btn btn-ghost" href="index.html">Back to the home page</a></p>
 </section>
@@ -399,66 +408,63 @@ var DEMO_MODE = true;
 var TAX_RATE  = 0.08375;                 /* Clark County, NV. Replace with a tax API for multi-state. */
 var CODES     = { FOUNDING10: 0.10, WELCOME5: 0.05 };
 
-var UNITS = {
-  column:{ name:'Aroma Good Column', price:349 },
-  panel: { name:'Aroma Good Panel',  price:849 }
-};
-var FINISHES = {
-  steel:['Steel','#7C8790'], charcoal:['Charcoal','#5B5B5C'], cream:['Cream','#B8A47C']
-};
-var ADDON_PRICE = 59;
-
 var STATES = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC'];
-
-/* ---------- cart from the URL ---------- */
+var cart = {ship:0, disc:0, code:''};
 var q = new URLSearchParams(location.search);
-var cart = {
-  unit:   UNITS[q.get('unit')] ? q.get('unit') : 'column',
-  finish: FINISHES[q.get('finish')] ? q.get('finish') : 'steel',
-  scent:  q.get('scent') || 'First Light',
-  qty:    Math.min(10, Math.max(1, parseInt(q.get('qty'), 10) || 1)),
-  addon:  q.get('addon') === '1',
-  ship:   0,
-  disc:   0,
-  code:   ''
-};
-
-function money(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+// Import a nonpersistent checkout snapshot or a legacy direct-product link once.
+try {
+  if (q.has('items')) AromaCart.replace(JSON.parse(q.get('items')));
+  else if (q.has('unit')) AromaCart.addProduct({unit:q.get('unit'), finish:q.get('finish') || 'steel', scent:q.get('scent') || 'First Light', qty:Math.min(10, Math.max(1, parseInt(q.get('qty'), 10) || 1)), addon:q.get('addon') === '1'});
+  if ((q.has('items') || q.has('unit')) && AromaCart.isSaved()) history.replaceState(null, '', 'checkout.html?cart=1');
+} catch (error) {
+  document.getElementById('checkoutNotice').hidden = false;
+  document.getElementById('checkoutNotice').textContent = 'That checkout selection could not be loaded. Review the items in your cart.';
+}
+function money(cents){ return AromaCart.money(cents); }
 function track(name, params){
-  params = params || {};
-  if (window.gtag) gtag('event', name, params);
-  if (window.dataLayer) dataLayer.push(Object.assign({event:name}, params));
-  console.log('[aroma7]', name, params);
+  if (window.gtag) window.gtag('event', name, params || {});
+  if (window.dataLayer) window.dataLayer.push(Object.assign({event:name}, params));
 }
-
 function totals(){
-  var sub = UNITS[cart.unit].price * cart.qty + (cart.addon ? ADDON_PRICE : 0);
-  var disc = sub * cart.disc;
-  var tax = (sub - disc) * TAX_RATE;
-  return { sub:sub, disc:disc, tax:tax, ship:cart.ship, grand: sub - disc + tax + cart.ship };
+  var t = AromaCart.totals();
+  var disc = Math.round(t.subtotal * cart.disc);
+  var tax = Math.round((t.subtotal - disc) * TAX_RATE);
+  var ship = t.count ? cart.ship : 0;
+  return {sub:t.subtotal, monthly:t.monthly, disc:disc, tax:tax, ship:ship, grand:t.subtotal - disc + tax + ship};
 }
-
 function render(){
-  var u = UNITS[cart.unit], f = FINISHES[cart.finish], t = totals();
-
-  document.documentElement.style.setProperty('--accent', f[1]);
-  document.getElementById('lineImg').src = 'assets/aroma7-' + cart.finish + '.jpg';
-  document.getElementById('lineImg').alt = u.name + ' in ' + f[0];
-  document.getElementById('lineName').textContent = u.name;
-  document.getElementById('lineMeta').innerHTML =
-    f[0] + '<br>Starter scent: ' + cart.scent + '<br>Qty ' + cart.qty;
-  document.getElementById('lineAmt').textContent = money(u.price * cart.qty);
-  document.getElementById('addonLine').style.display = cart.addon ? 'flex' : 'none';
-
+  var items = AromaCart.getItems(), t = totals();
+  var container = document.getElementById('checkoutItems');
+  container.replaceChildren();
+  if (!items.length) {
+    var empty = document.createElement('p');
+    empty.textContent = 'Your cart is empty. Add a scent plan or diffuser to continue.';
+    container.appendChild(empty);
+    var shop = document.createElement('a'); shop.href = 'collections.html'; shop.textContent = 'Explore the collection'; container.appendChild(shop);
+  }
+  items.forEach(function(item){
+    var d = AromaCart.details(item), line = document.createElement('div'); line.className = 'line';
+    var img = document.createElement('img'); img.src = d.image; img.alt = d.name + ' ' + d.finish;
+    var body = document.createElement('div'), title = document.createElement('h3'), meta = document.createElement('p');
+    title.textContent = d.name;
+    meta.textContent = [d.finish, item.scent, 'Qty ' + item.qty].filter(Boolean).join(' · ') + (d.monthly ? ' · Free Column and starter scent included' : '');
+    body.append(title, meta);
+    var amount = document.createElement('span'); amount.className = 'amt'; amount.textContent = money(d.price * item.qty) + (d.monthly ? '/mo' : '');
+    line.append(img, body, amount); container.appendChild(line);
+  });
+  document.getElementById('subscriptionSummary').hidden = !t.monthly;
+  document.getElementById('recurringAmount').textContent = 'Recurring scent plans: ' + money(t.monthly) + '/month before tax. One-time items, express shipping, and first-payment discounts do not change this recurring amount.';
+  document.getElementById('subtotalLabel').textContent = t.monthly ? 'First payment subtotal' : 'Subtotal';
   document.getElementById('tSub').textContent = money(t.sub);
-  document.getElementById('tDisc').textContent = t.disc ? '\u2212' + money(t.disc) : '$0';
-  document.getElementById('tShip').textContent = cart.ship ? money(cart.ship) : 'Free';
+  document.getElementById('tDisc').textContent = t.disc ? '−' + money(t.disc) : money(0);
+  document.getElementById('tShip').textContent = t.ship ? money(t.ship) : 'Free';
   document.getElementById('tTax').textContent = money(t.tax);
   document.getElementById('tGrand').textContent = money(t.grand);
-  document.getElementById('payBtn').textContent = 'Pay ' + money(t.grand);
-
-  document.getElementById('backLink').href =
-    'product.html?unit=' + cart.unit + '&finish=' + cart.finish + '&scent=' + encodeURIComponent(cart.scent);
+  document.getElementById('payBtn').disabled = !items.length;
+  document.getElementById('payBtn').textContent = !items.length ? 'Cart is empty' : (DEMO_MODE ? 'Preview checkout — ' : 'Pay ') + money(t.grand);
+  document.getElementById('backLink').href = AromaCart.cartURL();
+  document.getElementById('editCart').href = AromaCart.cartURL();
+  document.getElementById('backLink').textContent = 'Back to cart';
 }
 
 /* ---------- state list ---------- */
@@ -473,7 +479,7 @@ function render(){
 document.querySelectorAll('[data-ship]').forEach(function(b){
   b.addEventListener('click', function(){
     document.querySelectorAll('[data-ship]').forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
-    cart.ship = Number(b.dataset.ship); render();
+    cart.ship = Number(b.dataset.ship) * 100; render();
     track('set_shipping', {method: b.dataset.label});
   });
 });
@@ -491,7 +497,7 @@ document.getElementById('promoBtn').addEventListener('click', function(){
   msg.className = 'promo-msg show';
   if (CODES[code]){
     cart.disc = CODES[code]; cart.code = code;
-    msg.textContent = code + ' applied, ' + Math.round(CODES[code] * 100) + '% off.';
+    msg.textContent = code + ' applied, ' + Math.round(CODES[code] * 100) + '% off this payment.';
     track('apply_promo', {code: code, ok: true});
   } else {
     cart.disc = 0; cart.code = '';
@@ -517,7 +523,7 @@ function validate(){
 
 document.getElementById('coForm').addEventListener('submit', function(e){
   e.preventDefault();
-  if (!validate()) return;
+  if (!AromaCart.getItems().length || !validate()) return;
 
   var t = totals();
   var order = {
@@ -526,10 +532,10 @@ document.getElementById('coForm').addEventListener('submit', function(e){
     address:{ line1:document.getElementById('addr1').value.trim(), line2:document.getElementById('addr2').value.trim(),
               city:document.getElementById('city').value.trim(), state:document.getElementById('stateSel').value,
               zip:document.getElementById('zip').value.trim() },
-    item:   UNITS[cart.unit].name, finish:FINISHES[cart.finish][0], scent:cart.scent,
-    qty:cart.qty, addon:cart.addon, code:cart.code, total:Math.round(t.grand)
+    items:AromaCart.getItems(), code:cart.code, total:t.grand,
+    subscription:t.monthly ? {amount:t.monthly, currency:'USD', interval:'month'} : null
   };
-  track('purchase', {value: order.total, currency:'USD', item: order.item, qty: order.qty});
+  // Emit a purchase event only after the payment provider confirms a live payment.
 
   if (!DEMO_MODE){
     /* Live: hand the cart to your server, then redirect to the Stripe session URL.
@@ -542,14 +548,20 @@ document.getElementById('coForm').addEventListener('submit', function(e){
   var done = document.getElementById('done');
   done.style.display = 'block';
   document.getElementById('doneRef').textContent =
-    'Order A7-' + String(Math.floor(100000 + Math.random() * 899999));
+    'Preview A7-' + String(Math.floor(100000 + Math.random() * 899999));
   document.getElementById('doneMsg').textContent =
-    'Your ' + order.item + ' in ' + order.finish + ' is confirmed. A receipt is on its way to ' + order.email + '.';
+    'Your cart has been previewed. No order was placed, no payment was taken, and no subscription was started. Your items are still in your cart.';
+  track('checkout_preview', {value:order.total / 100, currency:'USD', qty:AromaCart.totals().count});
   window.scrollTo({top:0, behavior:'smooth'});
 });
 
+AromaCart.subscribe(function(){
+  document.getElementById('done').style.display = 'none';
+  document.getElementById('co').style.display = '';
+  render();
+});
 render();
-track('view_checkout', {unit: cart.unit, value: Math.round(totals().grand)});
+track('view_checkout', {value:totals().grand / 100, qty:AromaCart.totals().count});
 </script>
 </body>
 </html>
